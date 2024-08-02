@@ -1,0 +1,13 @@
+[versions]
+
+kotlin = "2.0.20-RC"
+compose = "1.7.0-alpha02"
+
+[libraries]
+
+
+[plugins]
+
+multiplatform = { id = "org.jetbrains.kotlin.multiplatform", version.ref = "kotlin" }
+compose-compiler = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
+compose = { id = "org.jetbrains.compose", version.ref = "compose" }
