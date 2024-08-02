@@ -1,5 +1,8 @@
 ## ComposeShadow sample project
 
+- [Habr](https://habr.com/ru/sandbox/222572/)
+- [Medium](https://medium.com/@makeevrserg/compose-desktop-shadowjar-1cba3aba9a58)
+
 ### How to run
 
 - Don't use JetBrains Runtime Java
