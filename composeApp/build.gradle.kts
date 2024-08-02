@@ -26,21 +26,30 @@ dependencies {
 
 compose.desktop {
     application {
+        // Target at main class which contains main() function
         mainClass = "${libs.versions.packagename.get()}.MainKt"
+        // Add jvm arguments of your taste
         jvmArgs += listOf("--add-opens", "java.base/java.lang=ALL-UNNAMED")
+        // Setup native distributions just in case
         nativeDistributions {
             targetFormats(TargetFormat.Dmg, TargetFormat.Msi, TargetFormat.Deb)
             packageName = libs.versions.packagename.get()
             description = libs.versions.description.get()
             packageVersion = libs.versions.version.string.get()
-            licenseFile.set(rootProject.file("LICENSE.md"))
+            // Here you should insert modules, which will be embedded
+            // Not very convenient if you're not familiar with java, but print this and sse what jmods your java have
+            println("JMODS Folder: ${compose.desktop.application.javaHome}/jmods/java.base.jmod")
+            // For example, if you're using ROOM Multiplatform, you definitely need this
             modules("java.sql")
+            // Or include everything at once
             includeAllModules = false
+            // Setup proguard
             buildTypes.release.proguard {
                 isEnabled = true
                 obfuscate = true
                 optimize = true
                 joinOutputJars = true
+                // Add your proguard files
                 configurationFiles.from(
                     files(
                         "proguard-rules.pro",
@@ -48,19 +57,19 @@ compose.desktop {
                     )
                 )
             }
-            val assets = project.file("src")
-                .resolve("main")
-                .resolve("resources")
-                .resolve("assets")
-            macOS {
-                iconFile.set(assets.resolve("logo.icns"))
-            }
-            windows {
-                iconFile.set(assets.resolve("logo.ico"))
-            }
-            linux {
-                iconFile.set(assets.resolve("logo.png"))
-            }
+//            val assets = project.file("src")
+//                .resolve("main")
+//                .resolve("resources")
+//                .resolve("assets")
+//            macOS {
+//                iconFile.set(assets.resolve("logo.icns"))
+//            }
+//            windows {
+//                iconFile.set(assets.resolve("logo.ico"))
+//            }
+//            linux {
+//                iconFile.set(assets.resolve("logo.png"))
+//            }
         }
     }
 }
