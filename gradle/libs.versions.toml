@@ -1,13 +1,26 @@
 [versions]
+# Project
+packagename = "com.makeevrserg.composeshadow"
+version-string = "1.0.0"
+name = "ComposeShadow"
+description = "Sample compose shadow"
+# Kotlin
+kotlin = "2.0.0" # https://github.com/JetBrains/kotlin
+kotlin-compose = "1.6.11" # https://github.com/JetBrains/compose-multiplatform
+kotlin-coroutines = "1.9.0-RC" # https://github.com/Kotlin/kotlinx.coroutines
 
-kotlin = "2.0.20-RC"
-compose = "1.7.0-alpha02"
+# Shadow
+shadow = "8.1.1" # https://github.com/johnrengelman/shadow
+
+# Obfuscate
+proguard = "7.5.0" # https://github.com/Guardsquare/proguard
 
 [libraries]
-
+proguard = { module = "com.guardsquare:proguard-gradle", version.ref = "proguard" }
+kotlin-coroutines-swing = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-swing", version.ref = "kotlin-coroutines" }
 
 [plugins]
-
-multiplatform = { id = "org.jetbrains.kotlin.multiplatform", version.ref = "kotlin" }
-compose-compiler = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
-compose = { id = "org.jetbrains.compose", version.ref = "compose" }
+kotlin-multiplatform = { id = "org.jetbrains.kotlin.multiplatform", version.ref = "kotlin" }
+kotlin-compose = { id = "org.jetbrains.compose", version.ref = "kotlin-compose" }
+kotlin-compose-gradle = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
+shadow = { id = "com.github.johnrengelman.shadow", version.ref = "shadow" }
